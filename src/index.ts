@@ -10,9 +10,17 @@ new Pug({
   app: app
 });
 
-app.use(async ctx => {
+// Router
+import Router from '@koa/router'
+const router = new Router();
+
+router.get('/', async (ctx) => {
   await ctx.render('index')
 });
+
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 const PORT = 3000
 app.listen(PORT, () => {
