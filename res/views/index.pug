@@ -1,6 +1,26 @@
 doctype html
 html
   head
-    title="Hello World"
-  body
-    p Hello World!
+    title="Contacts App"
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous")
+  body.bg-dark.text-center
+    .card.bg-dark.text-white.mx-auto(style="width: 800px")
+      .card-body
+        h5.card-title="My Contacts"
+        h6.card-subtitle.mb-2.text-muted="Typescript Contacts App"
+        table.table.table-bordered.text-white
+          thead
+            tr
+              th="ID"
+              th="First Name"
+              th="Last Name"
+              th="Phone"
+              th="Email"
+          tbody
+            each contact in contacts
+              tr
+                td=contact.id
+                td=contact.firstname
+                td=contact.lastname
+                td=contact.phone
+                td=contact.email

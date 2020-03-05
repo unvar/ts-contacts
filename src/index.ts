@@ -2,6 +2,12 @@
 import Koa from 'koa'
 const app = new Koa();
 
+// Database
+import low from 'lowdb'
+import FileSync from 'lowdb/adapters/FileSync'
+const adapter = new FileSync('res/db.json')
+const db = low(adapter)
+
 // Templates
 import Pug from 'koa-pug'
 new Pug({
@@ -15,7 +21,8 @@ import Router from '@koa/router'
 const router = new Router();
 
 router.get('/', async (ctx) => {
-  await ctx.render('index')
+  const contacts = db.get('contacts').value()
+  await ctx.render('index', { contacts })
 });
 
 app
