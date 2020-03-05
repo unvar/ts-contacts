@@ -25,6 +25,11 @@ router.get('/', async (ctx) => {
   await ctx.render('index', { contacts })
 });
 
+router.post('/:id/delete', async (ctx) => {
+  db.get('contacts').remove({ id: +ctx.params.id }).write()
+  await ctx.redirect('/')
+});
+
 app
   .use(router.routes())
   .use(router.allowedMethods());

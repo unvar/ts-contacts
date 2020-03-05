@@ -16,6 +16,7 @@ html
               th="Last Name"
               th="Phone"
               th="Email"
+              th="X"
           tbody
             each contact in contacts
               tr
@@ -24,3 +25,7 @@ html
                 td=contact.lastname
                 td=contact.phone
                 td=contact.email
+                td
+                  form(id=`del${contact.id}` method="post" action=`/${contact.id}/delete`)
+                    button.btn.btn-danger(type="submit")="X"
+
